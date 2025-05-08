@@ -1,0 +1,100 @@
+from docx import Document
+from docx.shared import Pt, Inches
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+
+# Create a new Word Document
+doc = Document()
+
+# Define styles
+style = doc.styles['Normal']
+font = style.font
+font.name = 'Calibri'
+font.size = Pt(11)
+
+# Helper to add a heading
+def add_heading(text, level=1):
+    doc.add_heading(text, level=level)
+
+# Helper to add a paragraph with spacing
+def add_paragraph(text, bold=False):
+    p = doc.add_paragraph()
+    run = p.add_run(text)
+    run.bold = bold
+
+# Contact Info
+doc.add_heading('OLAWOLE, ADESOJI ADEYINKA', 0)
+doc.add_paragraph('📧 adeyinkaolawole63@gmail.com | 📞 +234 (902) 195 8044\n📍 No 4, Ogundare Awise Street, Soluyi, Gbagada, Lagos, Nigeria')
+
+# Summary
+add_heading('PROFESSIONAL SUMMARY', 1)
+doc.add_paragraph(
+    "Detail-oriented IT professional with experience in software development, electrical systems, and security technologies, transitioning into IT Proposal and Bid Development. Proven ability to translate technical requirements into clear, compelling proposals. Adept at collaborating with technical teams, interpreting RFPs/RFQs, and developing structured bid documentation. Strong foundation in networking, programming, and client-facing communication. Passionate about driving business growth through strategic proposal development."
+)
+
+# Core Competencies
+add_heading('CORE COMPETENCIES', 1)
+competencies = [
+    "IT Proposal & Bid Documentation",
+    "Technical & Non-Technical Writing",
+    "Web & Software Development (React, JavaScript, Python)",
+    "Requirement Gathering & Analysis",
+    "Client Communication & Presentation",
+    "Electrical & Security Systems Expertise",
+    "Microsoft Office Suite (Word, Excel, PowerPoint)",
+    "Network Infrastructure & Cabling",
+    "RFP/RFQ Interpretation",
+    "Compliance & Standards Alignment"
+]
+doc.add_paragraph(', '.join(competencies))
+
+# Professional Experience
+add_heading('PROFESSIONAL EXPERIENCE', 1)
+
+add_paragraph('Software Developer Intern', bold=True)
+add_paragraph('HiiT Plc Nigeria')
+doc.add_paragraph(
+    "- Designed and developed client-facing and internal software solutions using JavaScript, Python, and React.\n"
+    "- Collaborated with cross-functional teams to analyze client needs and propose technical solutions.\n"
+    "- Participated in Agile practices including sprint planning and daily stand-ups, contributing to clear project documentation.\n"
+    "- Supported proposal inputs by drafting solution architectures and implementation plans."
+)
+
+add_paragraph('Electrical Installer & Surveillance Technician', bold=True)
+add_paragraph('Murret Power PLC | Nov 2023 – Dec 2024')
+doc.add_paragraph(
+    "- Installed and maintained surveillance and access control systems in compliance with technical specifications.\n"
+    "- Partnered with project managers and stakeholders to deliver accurate system documentation and support materials.\n"
+    "- Delivered training and support to clients—skills transferable to client communications in proposals."
+)
+
+add_paragraph('NYSC - Internal Revenue Services, Ogun State', bold=True)
+add_paragraph('2019 – 2020')
+doc.add_paragraph(
+    "- Managed communications with businesses regarding tax compliance and services.\n"
+    "- Drafted formal notices and maintained records, reinforcing structured documentation skills valuable for bid submissions."
+)
+
+# Education
+add_heading('EDUCATION', 1)
+doc.add_paragraph('B.Sc. Business Administration\nHoudegbe North American University Benin, Cotonou\n2013 – 2017')
+
+# Certifications
+add_heading('CERTIFICATIONS & TRAINING', 1)
+doc.add_paragraph('Cisco Certified Network Associate (CCNA) – ISP Trainings\nJan 2025 – Apr 2025')
+
+# Technical Skills
+add_heading('TECHNICAL SKILLS', 1)
+skills = [
+    "Programming: JavaScript, HTML, CSS, Python",
+    "Frameworks: React, WordPress",
+    "Networking: IP Setup, Network Cabling, CCTV Systems",
+    "Tools: Microsoft Word, Excel, PowerPoint",
+    "Other: Technical Documentation, Client Engagement, Proposal Drafting"
+]
+doc.add_paragraph('\n'.join(skills))
+
+# Save the document
+file_path = "/mnt/data/Olawole_Adesoji_Proposal_Bid_Developer_CV.docx"
+doc.save(file_path)
+
+file_path
